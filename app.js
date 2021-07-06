@@ -335,7 +335,7 @@ function getCountryCounts(compDBObj){
     us_count = 0;
     uk_count = 0
     for(var i=0;i< Object.keys(compDBObj).length;i++ ){
-        var country = compDBObj[Object.keys(compDBObj)[i]]
+        var country = compDBObj[Object.keys(compDBObj)[i]].country
         if(country == 'in'){
             in_count++;
         }
