@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" id="abc1" />
+        <div class="logo">
+            <h2>Netflix</h2>
+        </div>
+        <ul style="display: flex;">
+            <li onclick="goTab('home')"><a href="#">Home</a></li>
+            <li id="login_btn" onclick="goTab('login')"><a href="#">Login</a></li>
+            <li id="account_btn" onclick="goTab('account')" style="display: none;"><a href="#">Analytics</a></li>
+            <li id="upload_btn" onclick="goTab('upload')" style="display: none;"><a href="#">Upload</a></li>
+            <label for="abc1" class="menu-close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </label>
+        </ul>
+        <div class="search">
+
+            <button id="btn_logout" type="submit" style="display: none;" onclick="logout()">Logout</button>
+        </div>
+        <label for="abc1" class="menu-open">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </label>
+    </header>
+    <div id="home">
+        <div class="container" id="description">
+
+        </div>
+
+        <div class="row">
+            <h2>Recommend</h2>
+            <div class="nav">
+                <div class="nav-bar" id="movies">
+
+                </div>
+            </div>
+            <div class="prev">&lt;</div>
+            <div class="next">&gt;</div>
+        </div>
+    </div>
+
+    <div id="account" style="display: none;">
+        <div style="display: flex;flex-direction: column;">
+            <div style="display: flex;height: 300px;">
+                <div style="width: 50%;background-color: aquamarine;" id="pieChart">
+
+                </div>
+                <div style="width: 50%; background-color: red;" id="barGraph">
+
+                </div>
+            </div>
+            <div style="background-color: blue;height: 600px;" id="geoMap">
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="login" style="display: none;">
+        <div style="display: flex;">
+            <div style="width:50%">
+                <div class="login-container">
+                    <input class="separator" type="text" name="username" id="username" placeholder="Enter your username" />
+                    <input class="separator" type="password" placeholder="Enter your password" />
+                    <button class="separator" onclick="login()">Login</button>
+                </div>
+            </div>
+            <div style="width:50%">
+                <div class="login-container">
+                    <input id="reg_name" class="separator" type="text" name="username"  placeholder="Enter your Name" />
+                    <input id="reg_username" class="separator" type="text" name="username"  placeholder="Enter your username" />
+                    <input class="separator" type="password" placeholder="Enter your password" />
+                    <input type="text" class="separator" id="reg_email" placeholder="Enter your Email" />
+                    <input class="separator" type="text" id="reg_code" placeholder="Enter your Country Code" />
+                    <button class="separator" onclick="register()">Register</button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div id="upload" style="display: none;">
+        <label for="myfile">Select a Poster file:</label>
+        <input type="file" id="myPosterFile" name="myfile">
+
+        <label for="myfile">Select a video file:</label>
+        <input type="file" id="myVideoFile" name="myfile">
+
+        <input id="upload_mov_id" class="separator" type="text" name="upload_mov_id"  placeholder="Enter your Movie ID" />
+        <input id="upload_mov_title" class="separator" type="text" name="upload_mov_title"  placeholder="Enter your Movie Title" />
+        <input id="upload_mov_desc" class="separator" type="text" name="upload_mov_desc"  placeholder="Enter your Movie Title" />
+
+        <button class="separator" onclick="uploadMovie()">Upload</button>
+    </div>
+
+    <div id="profile" style="display: none;"></div>
+
+    <script src="./firebase-app.js"></script>
+
+    <script src="./firebase-auth.js"></script>
+
+    <script src="./firebase-database.js"></script>
+
+    <script src="./firebase-firestore.js"></script>
+
+    <script src="./firebase-messaging.js"></script>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="http://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/index.js"></script>
+    <script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+    <script src="http://code.highcharts.com/modules/export-data.js"></script>
+    <script src="http://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/mapdata/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="https://www.highcharts.com/samples/static/jquery.combobox.js"></script>
+
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
